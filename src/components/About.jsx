@@ -1,32 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const storyTitles = ["Creative Thinking", "Frontend Focus", "3D Visual Style"];
 
 const About = () => {
   const section = useRef(null);
   const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    let frame;
-    const update = () => {
-      const steps = [...section.current.querySelectorAll(".about-card")];
-      let selected = 0;
-      steps.forEach((step, index) => {
-        if (step.getBoundingClientRect().top <= window.innerHeight * 0.55) selected = index;
-      });
-      setActive(selected);
-      frame = null;
-    };
-    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    update();
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-    };
-  }, []);
 
   return (
     <section ref={section} className="about-section story-section" id="about" data-step={active + 1}>
@@ -38,9 +16,8 @@ const About = () => {
           digital experiences that feel modern, useful, and visually memorable.
         </p>
         <div className="story-indicator">
-          <span className="story-number" aria-hidden="true">0{active + 1} / 03</span>
-          <strong key={active} aria-hidden="true">{storyTitles[active]}</strong>
           <nav className="story-dots" aria-label="About timeline">{storyTitles.map((title, index) => <button type="button" key={title} aria-label={`Read ${title}`} aria-current={index === active ? "step" : undefined} onClick={() => {
+            setActive(index);
             const card = section.current.querySelectorAll(".about-card")[index];
             card.tabIndex = -1;
             card.focus({ preventScroll: true });

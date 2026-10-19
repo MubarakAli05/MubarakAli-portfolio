@@ -17,7 +17,7 @@ The build prerenders the same React app into `dist/index.html`, then hydrates it
 
 ## Visual identity
 
-Desktop sections use staggered editorial alignment, offset Skills and Web & AI cards, and an image-right Agrivo feature. About becomes a sticky story: its left panel follows the three existing creative-thinking, frontend, and 3D steps. Tablet/mobile and short viewports use an unpinned reading layout; all nine 3D carousel projects remain intact.
+Desktop sections use staggered editorial alignment, offset Skills and Web & AI cards, and an image-right Agrivo feature. About uses three parallel, equal-height cards with content-sized spacing and larger body text; its navigation highlights and focuses the selected card rather than tracking scroll position. The cards stack on mobile. All nine 3D carousel projects remain intact.
 
 [ScrollMotion](src/components/ScrollMotion.jsx) adds staggered, one-time fade-up reveals. [PageMotion](src/components/PageMotion.jsx) adds scroll progress, hero parallax shapes, masked headline entrances and rotating words, a one-shot role typewriter and the existing 15+ project count-up, and a mouse-only magnetic hero button. CSS supplies hover lift/zoom, link underlines, button sweep/arrow/press feedback, and a skeleton only while the portrait is actually loading (including error cleanup). No artificial loading delay or scroll hijacking is used.
 

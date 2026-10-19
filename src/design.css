@@ -220,9 +220,6 @@ main > section {
 
 @media (min-width: 1051px) {
   .about-header { max-width: 640px; }
-  .about-cards { align-items: start; }
-  .about-card:nth-child(2) { margin-top: 28px; }
-  .about-card:nth-child(3) { margin-top: 56px; }
   .skills-section { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: 64px; align-items: start; }
   .skills-header { grid-column: 2; text-align: right; margin-left: auto; max-width: 440px; }
   .skills-grid { grid-column: 1 / -1; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; }
@@ -342,23 +339,10 @@ main > section {
 .hero-image-card[data-loading]::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(100deg, #e5e9e5 25%, #f7f8fa 45%, #e5e9e5 65%); background-size: 250% 100%; animation: skeleton-shimmer 1.6s linear infinite; }
 @keyframes skeleton-shimmer { to { background-position: -170% 0; } }
 @keyframes story-enter { from { opacity: 0.5; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-.story-indicator { display: none; }
-@media (min-width: 1051px) {
-  .story-section { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 80px; align-items: start; }
-  .story-section .about-header { position: sticky; top: 120px; margin: 0; }
-  .story-section .about-cards { display: flex; flex-direction: column; gap: 80px; padding: 36px 0 80px; }
-  .story-section .about-card { margin: 0; min-height: 300px; display: flex; flex-direction: column; justify-content: center; padding: 36px; }
-  .story-indicator { display: grid; gap: 16px; margin-top: 36px; padding-top: 26px; border-top: 1px solid var(--line); }
-  .story-number { font-size: 13px; letter-spacing: 3px; color: var(--accent); }
-  .story-indicator strong { font-size: 26px; animation: story-enter 350ms ease; }
-  .story-dots { display: flex; gap: 8px; }
-  .story-dots span { width: 28px; height: 3px; background: var(--line); transition: background 250ms ease, width 250ms ease; }
-  .story-dots span.active { width: 52px; background: var(--accent); }
-  .story-section[data-step="1"] .about-card:nth-child(1), .story-section[data-step="2"] .about-card:nth-child(2), .story-section[data-step="3"] .about-card:nth-child(3) { border-color: #a7bfb6; box-shadow: 0 12px 28px #1e35300b; }
-}
-@media (max-height: 700px) {
-  .story-section .about-header { position: static; }
-}
+.about-cards { align-items: stretch; }
+.about-card p { font-size: 16px; line-height: 1.75; }
+.about-card h3 { margin-bottom: 16px; }
+.story-section[data-step="1"] .about-card:nth-child(1), .story-section[data-step="2"] .about-card:nth-child(2), .story-section[data-step="3"] .about-card:nth-child(3) { border-color: #a7bfb6; box-shadow: 0 12px 28px #1e35300b; }
 main > section, .footer { position: relative; isolation: isolate; }
 main > section::before, .footer::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; border-radius: 24px; background: radial-gradient(420px circle at var(--pointer-x, 50%) var(--pointer-y, 40%), #176b5b0d, transparent 75%); opacity: 0; transition: opacity 350ms ease; }
 main > section[data-pointer]::before, .footer[data-pointer]::before { opacity: 1; }
@@ -398,7 +382,6 @@ main > section[data-pointer]::before, .footer[data-pointer]::before { opacity: 1
 .story-dots button { position: relative; width: 48px; min-height: 48px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: var(--muted); font-size: 12px; transition: color 250ms ease, background 250ms ease, transform 250ms ease; }
 .story-dots button[aria-current="step"] { color: white; background: var(--accent); border-color: var(--accent); transform: scale(1.08); }
 .story-dots button span { width: auto; height: auto; background: none; }
-.story-number { color: var(--accent); font-size: 12px; letter-spacing: 2px; }
 .about-cards { position: relative; }
 .about-card { position: relative; border-left: 3px solid var(--sage); }
 .about-card h3 { transition: letter-spacing 250ms ease; }
