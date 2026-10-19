@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
 const Contact = () => {
@@ -50,25 +50,28 @@ const Contact = () => {
         </div>
 
         <form ref={form} onSubmit={sendEmail} className="contact-form">
-          <input type="text" name="from_name" placeholder="Your Name" required />
+          <input type="text" name="from_name" placeholder="Your Name" aria-label="Your name" autoComplete="name" required />
 
           <input
             type="email"
             name="from_email"
             placeholder="Your Email"
+            aria-label="Your email"
+            autoComplete="email"
             required
           />
 
           <textarea
             name="message"
             placeholder="Your Message"
+            aria-label="Your message"
             rows="6"
             required
           ></textarea>
 
           <button type="submit">Send Message</button>
 
-          {status && <p className="form-status">{status}</p>}
+          <p className="form-status" role="status" aria-live="polite">{status}</p>
         </form>
       </div>
     </section>

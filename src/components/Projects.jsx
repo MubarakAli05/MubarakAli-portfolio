@@ -1,5 +1,4 @@
-// Project.jsx
-import React from "react";
+import { useEffect, useRef, useState } from "react";
 import ProjectCard from "./ProjectCard";
 
 const projects = [
@@ -8,7 +7,7 @@ const projects = [
     image: "/blender/light2.jpeg",
     description:
       "Realtime atmospheric lighting using Blender texturing, volumetrics, and cinematic rendering.",
-    github: "https://github.com/mubarak23523",
+    github: "https://github.com/MubarakAli05",
   },
 
   {
@@ -16,7 +15,7 @@ const projects = [
     image: "/blender/arch1.jpeg",
     description:
       "Modern café architecture visualization with warm atmospheric lighting and realistic interior detailing.",
-    github: "https://github.com/mubarak23523",
+    github: "https://github.com/MubarakAli05",
   },
 
   {
@@ -24,7 +23,7 @@ const projects = [
     image: "/blender/archh1.jpeg",
     description:
       "Modern home architecture visualization with cinematic lighting, realistic materials, and contemporary design aesthetics.",
-    github: "https://github.com/mubarak23523",
+    github: "https://github.com/MubarakAli05",
   },
 
   {
@@ -32,7 +31,7 @@ const projects = [
     image: "/blender/archhh1.jpeg",
     description:
       "Modern hall interior visualization with cinematic lighting, realistic materials, and contemporary architectural aesthetics.",
-    github: "https://github.com/mubarak23523",
+    github: "https://github.com/MubarakAli05",
   },
 
   {
@@ -40,7 +39,7 @@ const projects = [
     image: "/blender/game1.jpeg",
     description:
       "Realtime game environment with cinematic lighting, atmospheric effects, and immersive world design.",
-    github: "https://github.com/mubarak23523",
+    github: "https://github.com/MubarakAli05",
   },
 
   {
@@ -48,7 +47,7 @@ const projects = [
     image: "/blender/atmosp1.jpeg",
     description:
       "Realtime atmospheric lighting using Blender texturing, volumetrics, and cinematic rendering.",
-    github: "https://github.com/mubarak23523",
+    github: "https://github.com/MubarakAli05",
   },
 
   {
@@ -56,7 +55,7 @@ const projects = [
     image: "/blender/ev1.jpeg",
     description:
       "Post-apocalyptic environment with cinematic lighting, abandoned architecture, and immersive atmospheric storytelling.",
-    github: "https://github.com/mubarak23523",
+    github: "https://github.com/MubarakAli05",
   },
 
   {
@@ -64,7 +63,7 @@ const projects = [
     image: "/blender/cl1.jpeg",
     description:
       "Classroom environment with realtime lighting, realistic materials, and cinematic interior atmosphere.",
-    github: "https://github.com/mubarak23523",
+    github: "https://github.com/MubarakAli05",
   },
 
   {
@@ -72,25 +71,67 @@ const projects = [
     image: "/blender/atmos1.jpeg",
     description:
       "Atmospheric railway environment with cinematic fog, realistic lighting, and immersive mountain scenery.",
-    github: "https://github.com/mubarak23523",
+    github: "https://github.com/MubarakAli05",
   },
 ];
 
 const Projects = () => {
-  return (
-    
-    <section className="projects-section" id="projects">
-      <h2 className="section-title">
-        My 3D-Projects
-      </h2>
+  const track = useRef(null);
+  const [bounds, setBounds] = useState({ start: true, end: false });
 
-      <div className="projects-container">
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={index}
-            {...project}
-          />
-        ))}
+  useEffect(() => {
+    const element = track.current;
+    const update = () => setBounds({
+      start: element.scrollLeft <= 2,
+      end: element.scrollLeft + element.clientWidth >= element.scrollWidth - 2,
+    });
+    const observer = new ResizeObserver(update);
+    observer.observe(element);
+    element.addEventListener("scroll", update, { passive: true });
+    update();
+    return () => {
+      observer.disconnect();
+      element.removeEventListener("scroll", update);
+    };
+  }, []);
+
+  const move = (direction) => {
+    const element = track.current;
+    const cards = element.querySelectorAll(".project-card");
+    const step = cards[1].offsetLeft - cards[0].offsetLeft;
+    element.scrollBy({
+      left: direction * step,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+    });
+  };
+
+  return (
+    <section className="projects-section" id="projects" aria-labelledby="three-d-title">
+      <h2 className="section-title" id="three-d-title">My 3D-Projects</h2>
+      <div className="carousel-toolbar">
+        <p>All 9 works — explore lighting, architecture, and environments.</p>
+        <div className="carousel-controls">
+          <button type="button" aria-label="Previous 3D project" aria-controls="three-d-carousel" disabled={bounds.start} onClick={() => move(-1)}>←</button>
+          <button type="button" aria-label="Next 3D project" aria-controls="three-d-carousel" disabled={bounds.end} onClick={() => move(1)}>→</button>
+        </div>
+      </div>
+      <div
+        ref={track}
+        id="three-d-carousel"
+        className="project-carousel"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="3D projects — swipe or use the arrow buttons to browse"
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.target !== event.currentTarget) return;
+          if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+            event.preventDefault();
+            move(event.key === "ArrowLeft" ? -1 : 1);
+          }
+        }}
+      >
+        {projects.map((project) => <ProjectCard key={project.title} {...project} />)}
       </div>
     </section>
   );

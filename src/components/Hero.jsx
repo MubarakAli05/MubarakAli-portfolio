@@ -1,17 +1,4 @@
-import React, { useEffect } from "react";
-import Typed from "typed.js";
-
 const Hero = () => {
-  useEffect(() => {
-    const typed = new Typed(".hero-typing", {
-      strings: ["Frontend Developer", "3D Artist", "UI Designer"],
-      typeSpeed: 60,
-      backSpeed: 35,
-      loop: true,
-    });
-
-    return () => typed.destroy();
-  }, []);
 
   return (
     <section className="hero" id="home">
@@ -24,7 +11,7 @@ const Hero = () => {
         </h1>
 
         <p className="hero-role">
-          <span className="hero-typing"></span>
+          Frontend &amp; Full Stack Developer · 3D Artist
         </p>
 
         <p className="hero-desc">
@@ -62,7 +49,14 @@ const Hero = () => {
 
       <div className="hero-right">
         <div className="hero-image-card">
-          <img src="/meee.png" alt="Mubarak" />
+          <img
+            src="/portrait.jpg"
+            alt="Mubarak Ali, frontend developer and 3D artist"
+            width="768"
+            height="1024"
+            fetchPriority="high"
+            decoding="async"
+          />
 
           <div className="floating-card card-one">
             Web Developer

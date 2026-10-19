@@ -1,4 +1,3 @@
-import React from "react";
 
 const skills = [
   {
@@ -10,10 +9,10 @@ const skills = [
   },
 
   {
-    icon: "🎨",
-    title: "UI/UX",
-    desc: "Clean modern interfaces with strong visual hierarchy.",
-    tech: ["Figma", "Wireframes", "UX", "Design Systems"],
+    icon: "🌐",
+    title: "Full Stack",
+    desc: "End-to-end web applications with responsive interfaces, backend APIs, and database integration.",
+    tech: ["React", "Node.js", "Express.js", "MongoDB"],
     glow: "ui-glow",
   },
 
@@ -26,10 +25,10 @@ const skills = [
   },
 
   {
-    icon: "🎬",
-    title: "Animation",
-    desc: "Interactive transitions and motion-driven experiences.",
-    tech: ["GSAP", "CSS", "Motion", "Transitions"],
+    icon: "🧠",
+    title: "AI/ML Engineering",
+    desc: "Currently learning the foundations of artificial intelligence and machine learning engineering.",
+    tech: ["Currently Learning"],
     glow: "motion-glow",
   },
 ];

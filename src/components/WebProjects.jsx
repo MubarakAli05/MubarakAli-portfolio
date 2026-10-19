@@ -1,39 +1,38 @@
 // WebProjects.jsx
 
-import React from "react";
 import ProjectCard from "./ProjectCard";
 
 const webProjects = [
 
   {
     title: "Luxury Portfolio Website",
-    image: "/web/logo2.png",
+    image: "/web/portfolio-cover.svg",
+    imageFit: "contain",
     description:
       "Modern luxury-themed portfolio website built with React, smooth animations, and responsive UI design.",
-    github: "https://github.com/mubarak23523",
+    github: "https://github.com/MubarakAli05",
     live: "https://mubarak-ali-portfolio.vercel.app/",
   },
 
   {
-    title: "Digital Flex Printing Website",
-    image: "/web/logo1.jpg",
+    title: "When to Wander",
+    image: "/web/when-to-wander-cover.png",
+    imageFit: "contain",
     description:
-      "Professional business website for flex printing services with mega menu, hero carousel, and product showcase.",
-    github: "https://github.com/mubarak23523",
-    live: "https://chennaidigitalprinting.netlify.app",
+      "Seasonal travel discovery platform with guides to 195 countries, recommended travel months, festivals, and natural wonders.",
+    github: "https://github.com/MubarakAli05/WhentoWander",
+    live: "https://whentowander.vercel.app/",
   },
 
 
-{
-  title: "Increnity Creative Platform",
-  image: "/web/logo3.png",
-  description:
-    "Developed and deployed a full-stack creative community platform with responsive frontend, secure backend APIs, MongoDB Atlas integration, authentication system, admin dashboard, and cloud deployment using Vercel and Render.",
-  tech:
-    "React.js, Node.js, Express.js, MongoDB Atlas, Render, Vercel, CSS",
-  github: "https://github.com/mubarak23523",
-    live: "https://increnity.vercel.app/",
-}
+  {
+    title: "AI Assistant",
+    image: "/web/ai-assistant-cover.svg",
+    imageFit: "contain",
+    description:
+      "Python desktop assistant with a PySide6 interface and dedicated AI, voice, intent, and memory modules. Windows actions support applications, screenshots, media controls, and system information.",
+    github: "https://github.com/MubarakAli05/NEXUS",
+  }
  
 ];
 
@@ -44,7 +43,7 @@ const WebProjects = () => {
     <section className="projects-section" id="web-projects">
 
       <h2 className="section-title">
-        Web Projects
+        Web &amp; AI Projects
       </h2>
 
       <div className="projects-container">

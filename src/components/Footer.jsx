@@ -1,5 +1,4 @@
 
-import React from "react";
 
 const Footer = () => {
 
@@ -32,7 +31,8 @@ const Footer = () => {
         <div className="footer-icons">
 
           <a
-            href="https://github.com/mubarak23523"
+            href="https://github.com/MubarakAli05"
+            aria-label="Mubarak Ali on GitHub (opens in a new tab)"
             target="_blank"
             rel="noreferrer"
           >
@@ -42,7 +42,8 @@ const Footer = () => {
           </a>
 
           <a
-            href="https://www.linkedin.com/in/mubarak-s-9a374a307"
+            href="https://www.linkedin.com/in/mubarak5"
+            aria-label="Mubarak Ali on LinkedIn (opens in a new tab)"
             target="_blank"
             rel="noreferrer"
           >
@@ -53,6 +54,7 @@ const Footer = () => {
 
           <a
             href="https://www.instagram.com/aalam_alkhayal_05/"
+            aria-label="Mubarak Ali on Instagram (opens in a new tab)"
             target="_blank"
             rel="noreferrer"
           >

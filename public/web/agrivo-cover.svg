@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="field" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22271A"/>
+      <stop offset="1" stop-color="#111912"/>
+    </linearGradient>
+  </defs>
+  <style>
+    #field stop { stop-color: #F0F4F3; }
+    [fill="#FFCC00"] { fill: #176B5B; }
+    [stroke="#FFCC00"] { stroke: #176B5B; }
+    [fill="#F4F1E5"] { fill: #202A32; }
+    [fill="#B9C4AB"] { fill: #5E6974; }
+    [stroke="#B8C38D"], [stroke="#D5DFB0"] { stroke: #176B5B; }
+  </style>
+  <rect width="1200" height="630" fill="url(#field)"/>
+  <path d="M0 495c240-150 415 140 640-10s380-90 560-160M0 551c240-150 415 140 640-10s380-90 560-160M0 607c240-150 415 140 640-10s380-90 560-160" stroke="#B8C38D" stroke-opacity=".14" stroke-width="2"/>
+  <path d="M80 98h44" stroke="#FFCC00" stroke-width="3"/>
+  <text x="146" y="105" fill="#FFCC00" font-family="Arial, sans-serif" font-size="19" letter-spacing="3">AGRICULTURE × AI</text>
+  <text x="80" y="300" fill="#F4F1E5" font-family="Arial, sans-serif" font-size="108" font-weight="700" letter-spacing="-4">Agrivo</text>
+  <text x="86" y="363" fill="#B9C4AB" font-family="Arial, sans-serif" font-size="25">Exploring a smarter growing future.</text>
+  <rect x="84" y="455" width="228" height="44" rx="22" stroke="#FFCC00" stroke-opacity=".4"/>
+  <circle cx="109" cy="477" r="4" fill="#FFCC00"/>
+  <text x="127" y="483" fill="#FFCC00" font-family="Arial, sans-serif" font-size="14" letter-spacing="2">IN DEVELOPMENT</text>
+  <circle cx="919" cy="292" r="151" stroke="#B8C38D" stroke-opacity=".2"/>
+  <path d="M917 397V269m0 65c-99 0-112-60-112-99 71 0 112 25 112 99Zm0-45c0-87 65-109 119-109 0 74-37 109-119 109Z" stroke="#D5DFB0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m783 215-34-31m310 41 32-27m-172 245v36" stroke="#FFCC00" stroke-opacity=".55" stroke-width="2"/>
+  <circle cx="741" cy="176" r="8" fill="#FFCC00"/>
+  <circle cx="1099" cy="190" r="8" fill="#FFCC00"/>
+  <circle cx="919" cy="487" r="8" fill="#FFCC00"/>
+</svg>

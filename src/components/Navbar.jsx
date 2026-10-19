@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,17 +15,34 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
-      <div
+    <nav
+      className={`navbar ${scrolled ? "scrolled" : ""}`}
+      aria-label="Main navigation"
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          setMenuOpen(false);
+          event.currentTarget.querySelector("button").focus();
+        }
+      }}
+    >
+      <a href="#home" className="nav-brand" onClick={() => setMenuOpen(false)}>
+        <img className="brand-mark" src="/logo.svg" width="36" height="36" alt="" aria-hidden="true" />
+        Mubarak Ali<span className="brand-dot">.</span>
+      </a>
+      <button
+        type="button"
         className={`hamburger ${menuOpen ? "active" : ""}`}
+        aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+        aria-expanded={menuOpen}
+        aria-controls="navigation-links"
         onClick={() => setMenuOpen(!menuOpen)}
       >
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
 
-      <ul className={`nav-links ${menuOpen ? "show-menu" : ""}`}>
+      <ul id="navigation-links" className={`nav-links ${menuOpen ? "show-menu" : ""}`}>
         <li>
           <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
         </li>
@@ -36,6 +53,10 @@ const Navbar = () => {
 
         <li>
           <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
+        </li>
+
+        <li>
+          <a href="#aiml-projects" onClick={() => setMenuOpen(false)}>AI/ML</a>
         </li>
 
         <li>

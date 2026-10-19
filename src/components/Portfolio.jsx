@@ -263,7 +263,7 @@ const Portfolio = () => {
             </a>
 
             <a
-              href="https://github.com/mubarak23523"
+              href="https://github.com/MubarakAli05"
               target="_blank"
               rel="noreferrer"
             >
@@ -271,7 +271,7 @@ const Portfolio = () => {
             </a>
 
             <a
-              href="https://www.linkedin.com/"
+              href="https://www.linkedin.com/in/mubarak5"
               target="_blank"
               rel="noreferrer"
             >
