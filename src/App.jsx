@@ -7,6 +7,7 @@ import WebProjects from "./components/WebProjects";
 import AIProjects from "./components/AIProjects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import ScrollMotion from "./components/ScrollMotion";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <ScrollMotion />
     </>
   );
 }

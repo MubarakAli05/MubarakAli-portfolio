@@ -17,6 +17,10 @@ The build prerenders the same React app into `dist/index.html`, then hydrates it
 
 ## Visual identity
 
+Desktop sections use staggered editorial alignment: offset About, Skills, and Web & AI cards, alternating heading alignment, and an image-right Agrivo feature. Tablet and mobile retain a straightforward reading order and aligned cards; the nine-work 3D carousel remains unchanged.
+
+[ScrollMotion](src/components/ScrollMotion.jsx) adds a one-time, subtle entrance as content enters the viewport, with gentle card and image hover effects. Content is never hidden before JavaScript runs. Reduced-motion preferences skip/cancel animations, focused controls remain stable, and no auto-scrolling or continuous animation is enabled.
+
 The custom folded-ribbon symbol replaces plain initials, using three green facets to suggest code and 3D depth. [logo.svg](public/logo.svg) appears in the navigation and as the SVG favicon, with matching PNG favicon, Apple touch icon, and social preview. Regenerate raster assets on Windows using `powershell -File scripts\generate-brand-assets.ps1`; keep its ribbon coordinates aligned with the SVG.
 
 All nine original 3D projects remain individually visible in one compact horizontal carousel, with previous/next controls, swipe/scroll support, and full-image previews. Three cards fit on desktop, two on tablet, and one on mobile; movement is user-controlled and respects reduced-motion preferences.

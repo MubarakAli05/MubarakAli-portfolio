@@ -213,8 +213,32 @@ main > section {
 .footer-icons a:hover { color: var(--accent); border-color: var(--accent); }
 .footer-bottom { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
 
+.about-card, .skill-card { transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease; }
+
+@media (min-width: 1051px) {
+  .about-header { max-width: 640px; }
+  .about-cards { align-items: start; }
+  .about-card:nth-child(2) { margin-top: 28px; }
+  .about-card:nth-child(3) { margin-top: 56px; }
+  .skills-section { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: 64px; align-items: start; }
+  .skills-header { grid-column: 2; text-align: right; margin-left: auto; max-width: 440px; }
+  .skills-grid { grid-column: 1 / -1; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; }
+  .skill-card:nth-child(odd) { margin-top: 32px; }
+  #web-projects .section-title { max-width: 760px; margin-left: auto; }
+  #web-projects .projects-container { align-items: start; }
+  #web-projects .project-card:nth-of-type(2) { margin-top: 40px; }
+  #web-projects .project-card:nth-of-type(3) { margin-top: 80px; }
+  .ai-project-card { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+  .ai-project-card > .project-image { grid-column: 2; grid-row: 1; background: #f0f4f3; }
+  .ai-project-card > .project-content { grid-column: 1; grid-row: 1; }
+  .contact-header { text-align: right; }
+  .contact-info { padding-top: 48px; }
+}
+
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .project-card:hover { transform: translateY(-4px); border-color: #a7bfb6; box-shadow: 0 14px 28px #1e35300b; }
+  .project-card:hover, .about-card:hover, .skill-card:hover { transform: translateY(-4px); border-color: #a7bfb6; box-shadow: 0 14px 28px #1e35300b; }
+  .project-image-container .project-image { transition: transform 350ms ease; }
+  .project-card:hover .project-image-container .project-image { transform: scale(1.025); }
 }
 
 @media (min-width: 769px) and (max-width: 1050px) {
