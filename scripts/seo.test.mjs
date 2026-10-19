@@ -49,6 +49,31 @@ test("all nine original 3D works remain in the prerendered carousel", () => {
   assert.match(html, /aria-label="Next 3D project"/);
 });
 
+test("animated content keeps readable static text without a motion toggle", () => {
+  assert.match(html, /<h1 aria-label="Building cinematic digital experiences\."/);
+  assert.match(html, /class="project-counter" aria-hidden="true">15\+/);
+  assert.match(html, /class="sr-only">Frontend &amp; Full Stack Developer · 3D Artist/);
+  assert.doesNotMatch(html, /motion-toggle|Pause motion|Resume motion/);
+  for (const title of ["Creative Thinking", "Frontend Focus", "3D Visual Style"]) {
+    assert.ok(html.includes(`<h4>${title}</h4>`));
+  }
+  assert.doesNotMatch(html, /data-loading="true"/);
+});
+
+test("section interactions retain accessible controls and honest project status", () => {
+  assert.match(html, /aria-label="About timeline"/);
+  assert.equal([...html.matchAll(/aria-label="Read (?:Creative Thinking|Frontend Focus|3D Visual Style)"/g)].length, 3);
+  assert.equal([...html.matchAll(/aria-controls="skill-spotlight"/g)].length, 4);
+  assert.match(html, /id="skill-spotlight" aria-live="polite"/);
+  assert.equal([...html.matchAll(/<details>/g)].length, 3);
+  assert.match(html, /PLANNED CAPABILITIES/);
+  for (const field of ["name", "email", "message"]) {
+    assert.ok(html.includes(`for="contact-${field}"`));
+    assert.ok(html.includes(`id="contact-${field}"`));
+  }
+  assert.match(html, /class="back-to-top" href="#home"/);
+});
+
 test("structured data consistently identifies the portfolio owner", () => {
   const json = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
   assert.ok(json, "Missing structured data");

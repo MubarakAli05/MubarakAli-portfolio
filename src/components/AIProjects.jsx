@@ -21,6 +21,12 @@ const AIProjects = () => (
           machine learning closer together, helping us explore soil conditions,
           plant health, and crop-related insights through intelligent technology.
         </p>
+        <div className="agrivo-explorer" aria-label="Explore the Agrivo vision">
+          <span className="explorer-label">EXPLORE THE VISION · PLANNED CAPABILITIES</span>
+          <details><summary>01 <strong>Soil conditions</strong><span aria-hidden="true">+</span></summary><p>Exploring how agricultural data could help us better understand soil conditions.</p></details>
+          <details><summary>02 <strong>Plant health</strong><span aria-hidden="true">+</span></summary><p>Investigating how machine learning could support insights into plant health.</p></details>
+          <details><summary>03 <strong>Crop insights</strong><span aria-hidden="true">+</span></summary><p>Bringing agricultural data together to explore useful crop-related insights.</p></details>
+        </div>
         <div className="tech-stack" aria-label="Project focus">
           <span>Agriculture</span>
           <span>Artificial Intelligence</span>

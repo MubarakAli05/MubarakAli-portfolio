@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 const skills = [
   {
@@ -34,8 +35,9 @@ const skills = [
 ];
 
 const Skills = () => {
+  const [selected, setSelected] = useState(0);
   return (
-  
+
     <section className="skills-section" id="skills">
 
       <div className="skills-header">
@@ -51,7 +53,7 @@ const Skills = () => {
         {skills.map((skill, index) => (
 
           <div
-            className={`skill-card ${skill.glow}`}
+            className={`skill-card ${skill.glow}${selected === index ? " is-selected" : ""}`}
             key={index}
           >
 
@@ -59,7 +61,7 @@ const Skills = () => {
               {skill.icon}
             </div>
 
-            <h3>{skill.title}</h3>
+            <h3><button className="skill-select" type="button" aria-pressed={selected === index} aria-controls="skill-spotlight" onClick={() => setSelected(index)}>{skill.title}<span aria-hidden="true">↗</span></button></h3>
 
             <p>{skill.desc}</p>
 
@@ -80,9 +82,13 @@ const Skills = () => {
         ))}
 
       </div>
+      <div className="skill-spotlight" id="skill-spotlight" aria-live="polite" aria-atomic="true">
+        <span>EXPERTISE SPOTLIGHT</span>
+        <div key={selected}><strong>{skills[selected].title}</strong><p>{skills[selected].tech.join(" · ")}</p></div>
+      </div>
 
     </section>
-    
+
   );
 };
 

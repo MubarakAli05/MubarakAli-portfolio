@@ -78,13 +78,19 @@ const projects = [
 const Projects = () => {
   const track = useRef(null);
   const [bounds, setBounds] = useState({ start: true, end: false });
+  const [position, setPosition] = useState({ first: 1, last: 3, progress: 0 });
 
   useEffect(() => {
     const element = track.current;
-    const update = () => setBounds({
-      start: element.scrollLeft <= 2,
-      end: element.scrollLeft + element.clientWidth >= element.scrollWidth - 2,
-    });
+    const update = () => {
+      const cards = element.querySelectorAll(".project-card");
+      const step = cards[1].offsetLeft - cards[0].offsetLeft;
+      const first = Math.round(element.scrollLeft / step) + 1;
+      const visible = Math.max(1, Math.round(element.clientWidth / step));
+      const distance = element.scrollWidth - element.clientWidth;
+      setPosition({ first, last: Math.min(projects.length, first + visible - 1), progress: distance > 0 ? Math.min(1, Math.max(0, element.scrollLeft / distance)) : 1 });
+      setBounds({ start: element.scrollLeft <= 2, end: element.scrollLeft >= distance - 2 });
+    };
     const observer = new ResizeObserver(update);
     observer.observe(element);
     element.addEventListener("scroll", update, { passive: true });
@@ -132,6 +138,11 @@ const Projects = () => {
         }}
       >
         {projects.map((project) => <ProjectCard key={project.title} {...project} />)}
+      </div>
+      <div className="carousel-position">
+        <span>WORKS {String(position.first).padStart(2, "0")}–{String(position.last).padStart(2, "0")} <span>/ 09</span></span>
+        <div className="carousel-meter" aria-hidden="true"><span style={{ transform: `translateX(${position.progress * 300}%)` }} /></div>
+        <span>LIGHT · SPACE · FORM</span>
       </div>
     </section>
   );

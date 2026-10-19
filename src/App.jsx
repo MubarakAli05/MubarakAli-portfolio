@@ -8,6 +8,8 @@ import AIProjects from "./components/AIProjects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollMotion from "./components/ScrollMotion";
+import PageMotion from "./components/PageMotion";
+import SurfaceInteractions from "./components/SurfaceInteractions";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
       </main>
       <Footer />
       <ScrollMotion />
+      <PageMotion />
+      <SurfaceInteractions />
     </>
   );
 }

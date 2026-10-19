@@ -74,6 +74,7 @@ const Footer = () => {
         <span>
           © 2026 Mubarak. All Rights Reserved.
         </span>
+        <a className="back-to-top" href="#home">Back to top <span aria-hidden="true">↑</span></a>
 
       </div>
 

@@ -44,27 +44,30 @@ const Contact = () => {
           </p>
 
           <div className="contact-details">
-            <p>📧 mubarak23523@gmail.com</p>
+            <p><a className="contact-email" href="mailto:mubarak23523@gmail.com">mubarak23523@gmail.com <span aria-hidden="true">↗</span></a></p>
             <p>📍 Tamil Nadu, India</p>
           </div>
         </div>
 
         <form ref={form} onSubmit={sendEmail} className="contact-form">
-          <input type="text" name="from_name" placeholder="Your Name" aria-label="Your name" autoComplete="name" required />
+          <label htmlFor="contact-name">Your name</label>
+          <input id="contact-name" type="text" name="from_name" placeholder="Your Name" autoComplete="name" required />
 
+          <label htmlFor="contact-email">Your email</label>
           <input
+            id="contact-email"
             type="email"
             name="from_email"
             placeholder="Your Email"
-            aria-label="Your email"
             autoComplete="email"
             required
           />
 
+          <label htmlFor="contact-message">Your message</label>
           <textarea
+            id="contact-message"
             name="message"
             placeholder="Your Message"
-            aria-label="Your message"
             rows="6"
             required
           ></textarea>

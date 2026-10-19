@@ -2,16 +2,18 @@ const Hero = () => {
 
   return (
     <section className="hero" id="home">
+      <div className="hero-shapes" aria-hidden="true"><span className="parallax-shape shape-ring" /><span className="parallax-shape shape-diamond" /></div>
       <div className="hero-left">
         <span className="hero-badge">Creative Portfolio</span>
 
-        <h1>
-          Building cinematic <br />
-          <span>digital experiences.</span>
+        <h1 aria-label="Building cinematic digital experiences.">
+          <span className="headline-mask" aria-hidden="true"><span className="headline-line">Building <span className="rotating-word">cinematic</span></span></span>
+          <span className="headline-mask" aria-hidden="true"><span className="headline-line">digital experiences.</span></span>
         </h1>
 
         <p className="hero-role">
-          Frontend &amp; Full Stack Developer · 3D Artist
+          <span className="sr-only">Frontend &amp; Full Stack Developer · 3D Artist</span>
+          <span className="typewriter-line" aria-hidden="true">Frontend &amp; Full Stack Developer · 3D Artist</span>
         </p>
 
         <p className="hero-desc">
@@ -20,8 +22,8 @@ const Hero = () => {
         </p>
 
         <div className="hero-buttons">
-          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="primary-btn">
-            Hire Me
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="primary-btn magnetic-btn">
+            <span>Hire Me</span><span className="button-arrow" aria-hidden="true">↗</span>
           </a>
 
           <a href="#projects" className="secondary-btn">
@@ -31,7 +33,7 @@ const Hero = () => {
 
         <div className="hero-stats">
           <div>
-            <h3>15+</h3>
+            <h3 aria-label="15 plus"><span className="project-counter" aria-hidden="true">15+</span></h3>
             <p>Projects</p>
           </div>
 
@@ -48,6 +50,7 @@ const Hero = () => {
       </div>
 
       <div className="hero-right">
+        <div className="portrait-label"><span>THE PERSON BEHIND THE PIXELS</span><span aria-hidden="true">↘</span></div>
         <div className="hero-image-card">
           <img
             src="/portrait.jpg"
@@ -66,6 +69,7 @@ const Hero = () => {
             3D Visual Artist
           </div>
         </div>
+        <div className="portrait-caption"><strong>Mubarak Ali</strong><span>Code meets creativity.</span></div>
       </div>
     </section>
   );
