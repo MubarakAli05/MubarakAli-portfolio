@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ProjectCard from "./ProjectCard";
+import { projectGalleries } from "./projectGalleries";
 
 const projects = [
   {
@@ -115,7 +116,7 @@ const Projects = () => {
     <section className="projects-section" id="projects" aria-labelledby="three-d-title">
       <h2 className="section-title" id="three-d-title">My 3D-Projects</h2>
       <div className="carousel-toolbar">
-        <p>All 9 works — explore lighting, architecture, and environments.</p>
+        <p>All 9 works — explore finished renders and behind-the-scenes Blender images in each gallery.</p>
         <div className="carousel-controls">
           <button type="button" aria-label="Previous 3D project" aria-controls="three-d-carousel" disabled={bounds.start} onClick={() => move(-1)}>←</button>
           <button type="button" aria-label="Next 3D project" aria-controls="three-d-carousel" disabled={bounds.end} onClick={() => move(1)}>→</button>
@@ -137,7 +138,7 @@ const Projects = () => {
           }
         }}
       >
-        {projects.map((project) => <ProjectCard key={project.title} {...project} />)}
+        {projects.map((project) => <ProjectCard key={project.title} {...project} gallery={projectGalleries[project.title]} />)}
       </div>
       <div className="carousel-position">
         <span>WORKS {String(position.first).padStart(2, "0")}–{String(position.last).padStart(2, "0")} <span>/ 09</span></span>

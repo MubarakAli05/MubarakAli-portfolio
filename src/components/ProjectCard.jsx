@@ -28,7 +28,7 @@ const ProjectCard = ({ image, imageFit = "cover", title, description, github, li
             loading="lazy"
             decoding="async"
           />
-          {gallery && <span className="project-count">{works.length} works</span>}
+          {gallery && <span className="project-count">{works.length} images</span>}
         </div>
         <div className="project-content">
           <h3>{title}</h3>
@@ -47,8 +47,8 @@ const ProjectCard = ({ image, imageFit = "cover", title, description, github, li
                 type="button"
                 className="project-btn live-btn"
                 onClick={openPreview}
-                aria-label={gallery ? `View ${title} collection` : `View ${title} full image`}
-              >{gallery ? "View Collection" : "View Full Image"} <span aria-hidden="true">↗</span></button>
+                aria-label={gallery ? `View ${title} gallery` : `View ${title} full image`}
+              >{gallery ? "View Gallery" : "View Full Image"} <span aria-hidden="true">↗</span></button>
             )}
             <a
               href={github}
@@ -64,7 +64,7 @@ const ProjectCard = ({ image, imageFit = "cover", title, description, github, li
         <dialog
           ref={dialog}
           className="image-popup"
-          aria-label={gallery ? `${title} collection` : `${title} full image`}
+          aria-label={gallery ? `${title} gallery` : `${title} full image`}
           onKeyDown={(event) => {
             if (event.key === "Escape") {
               event.preventDefault();
@@ -81,16 +81,16 @@ const ProjectCard = ({ image, imageFit = "cover", title, description, github, li
         >
           <button type="button" className="close-btn" aria-label="Close image preview" onClick={() => dialog.current.close()}>✕</button>
           <div className="gallery-panel">
-            {previewLoaded && <img src={activeWork.image} alt={activeWork.title} className="popup-image" />}
+            {previewLoaded && <img src={activeWork.image} alt={gallery ? `${activeWork.title} — ${activeWork.description}` : activeWork.title} className="popup-image" decoding="async" />}
             <div className="gallery-caption" aria-live="polite">
               <h3>{activeWork.title}</h3>
               <p>{activeWork.description}</p>
             </div>
             {works.length > 1 && (
               <div className="gallery-controls">
-                <button type="button" onClick={() => move(-1)} disabled={activeIndex === 0} aria-label="Previous artwork">← Previous</button>
+                <button type="button" onClick={() => move(-1)} disabled={activeIndex === 0} aria-label="Previous image">← Previous</button>
                 <span aria-live="polite">{activeIndex + 1} / {works.length}</span>
-                <button type="button" onClick={() => move(1)} disabled={activeIndex === works.length - 1} aria-label="Next artwork">Next →</button>
+                <button type="button" onClick={() => move(1)} disabled={activeIndex === works.length - 1} aria-label="Next image">Next →</button>
               </div>
             )}
           </div>

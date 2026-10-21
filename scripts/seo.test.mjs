@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
-import { readFile, access, stat } from "node:fs/promises";
+import { readFile, readdir, access, stat } from "node:fs/promises";
 import test from "node:test";
+import { projectGalleries } from "../src/components/projectGalleries.js";
 
 const dist = new URL("../dist/", import.meta.url);
 const html = await readFile(new URL("index.html", dist), "utf8");
@@ -47,6 +48,37 @@ test("all nine original 3D works remain in the prerendered carousel", () => {
   }
   assert.match(html, /aria-label="Previous 3D project"/);
   assert.match(html, /aria-label="Next 3D project"/);
+});
+
+test("nine galleries include every matching render and process image without unrelated studies", async () => {
+  const prefixes = {
+    "Testing Lighting": "light",
+    "Cafe Architecture": "arch",
+    "Home Architecture": "archh",
+    "Modern Living Room": "archhh",
+    "Gaming Environment": "game",
+    "Atmospheric Lighting": "atmosp",
+    "Last of Environment": "ev",
+    "Class Room": "cl",
+    "Beyond the Mountains": "atmos",
+  };
+  assert.deepEqual(Object.keys(projectGalleries), Object.keys(prefixes));
+  const filenames = await readdir(new URL("blender/", dist));
+  for (const [title, prefix] of Object.entries(prefixes)) {
+    const images = projectGalleries[title];
+    const expected = filenames.filter((name) => new RegExp(`^${prefix}\\d+\\.jpeg$`).test(name));
+    assert.deepEqual(images.map(({ image }) => image.split("/").pop()).sort(), expected.sort());
+    assert.ok(html.includes(`aria-label="View ${title} gallery"`));
+    assert.ok(html.includes(`src="${images[0].image}"`), `${title} starts with its existing cover`);
+    for (const image of images) {
+      assert.equal(image.title, title);
+      assert.ok(image.description.length > 10);
+      await access(new URL(image.image.slice(1), dist));
+    }
+  }
+  assert.equal(Object.values(projectGalleries).flat().length, 25);
+  assert.equal([...html.matchAll(/class="project-count"/g)].length, 9);
+  assert.doesNotMatch(html, /class="popup-image"/);
 });
 
 test("animated content keeps readable static text without a motion toggle", () => {
