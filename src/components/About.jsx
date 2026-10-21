@@ -1,13 +1,6 @@
-import { useRef, useState } from "react";
-
-const storyTitles = ["Creative Thinking", "Frontend Focus", "3D Visual Style"];
-
 const About = () => {
-  const section = useRef(null);
-  const [active, setActive] = useState(0);
-
   return (
-    <section ref={section} className="about-section story-section" id="about" data-step={active + 1}>
+    <section className="about-section" id="about">
       <div className="about-header">
         <span className="about-subtitle">ABOUT ME</span>
         <h2>More Than <span>Just Code</span></h2>
@@ -15,15 +8,6 @@ const About = () => {
           I combine frontend development, UI design, and 3D creativity to build
           digital experiences that feel modern, useful, and visually memorable.
         </p>
-        <div className="story-indicator">
-          <nav className="story-dots" aria-label="About timeline">{storyTitles.map((title, index) => <button type="button" key={title} aria-label={`Read ${title}`} aria-current={index === active ? "step" : undefined} onClick={() => {
-            setActive(index);
-            const card = section.current.querySelectorAll(".about-card")[index];
-            card.tabIndex = -1;
-            card.focus({ preventScroll: true });
-            card.scrollIntoView({ block: "center", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
-          }}><span aria-hidden="true">0{index + 1}</span></button>)}</nav>
-        </div>
       </div>
 
       <div className="about-cards">

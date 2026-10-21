@@ -61,8 +61,8 @@ test("animated content keeps readable static text without a motion toggle", () =
 });
 
 test("section interactions retain accessible controls and honest project status", () => {
-  assert.match(html, /aria-label="About timeline"/);
-  assert.equal([...html.matchAll(/aria-label="Read (?:Creative Thinking|Frontend Focus|3D Visual Style)"/g)].length, 3);
+  assert.doesNotMatch(html, /aria-label="About timeline"|class="story-dots"|class="story-indicator"/);
+  assert.doesNotMatch(html, /aria-label="Read (?:Creative Thinking|Frontend Focus|3D Visual Style)"/);
   assert.equal([...html.matchAll(/aria-controls="skill-spotlight"/g)].length, 4);
   assert.match(html, /id="skill-spotlight" aria-live="polite"/);
   assert.equal([...html.matchAll(/<details>/g)].length, 3);
