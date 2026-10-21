@@ -435,15 +435,25 @@ main > section:not(.hero) {
 }
 main > section:not(.hero)::before { border-radius: 0; }
 #about { background: #fff; }
-#about .about-header { max-width: 760px; margin-inline: auto; text-align: center; }
-#about .story-dots { justify-content: center; }
+#about .about-header { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "label description" "title description" "title controls"; gap: 18px 64px; max-width: none; margin: 0 0 32px; padding-bottom: 32px; border-bottom: 1px solid var(--line); text-align: left; }
+#about .about-subtitle { grid-area: label; display: flex; align-items: center; gap: 12px; }
+#about .about-subtitle::before { content: ""; width: 28px; height: 2px; background: var(--accent); }
+#about .about-header h2 { grid-area: title; margin: 0; font-size: clamp(38px, 4.4vw, 58px); line-height: 1.08; letter-spacing: -2px; }
+#about .about-header h2 span { display: block; color: var(--accent); }
+#about .about-header > p { grid-area: description; align-self: center; margin: 0; padding-left: 28px; border-left: 2px solid var(--sage); font-size: 17px; line-height: 1.8; }
+#about .story-indicator { grid-area: controls; margin: 0; padding-left: 28px; }
+@media (max-width: 768px) {
+  #about .about-header { grid-template-columns: 1fr; grid-template-areas: "label" "title" "description" "controls"; gap: 20px; padding-bottom: 24px; margin-bottom: 24px; }
+  #about .about-header > p { padding-left: 18px; font-size: 16px; }
+  #about .story-indicator { padding-left: 18px; }
+}
 #about .about-card { background: linear-gradient(145deg, #fff, #f1f6f3); border: 1px solid #cedbd4; border-radius: 20px; }
 #about .about-card:nth-child(2) { background: linear-gradient(145deg, #fff, #edf4f8); }
 #about .about-card:nth-child(3) { background: linear-gradient(145deg, #fff, #f5f2ec); }
 .about-card-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 18px; }
 .about-icon { width: 40px; height: 40px; padding: 9px; border: 1px solid #ccdcd2; border-radius: 12px; color: var(--accent); background: #ffffffb3; transition: transform 250ms ease, box-shadow 250ms ease; }
 .about-card-top h3 { margin: 0; color: var(--muted); font-size: 12px; letter-spacing: 2px; }
-#about .story-dots { width: fit-content; margin-inline: auto; padding: 7px; border: 1px solid var(--line); border-radius: 40px; background: #f5f8f6; }
+#about .story-dots { width: fit-content; margin: 0; padding: 7px; border: 1px solid var(--line); border-radius: 40px; background: #f5f8f6; }
 #about .story-dots button { border-color: transparent; background: transparent; }
 #about .story-dots button[aria-current="step"] { background: var(--accent); }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {

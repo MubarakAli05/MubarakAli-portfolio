@@ -10,7 +10,7 @@ const About = () => {
     <section ref={section} className="about-section story-section" id="about" data-step={active + 1}>
       <div className="about-header">
         <span className="about-subtitle">ABOUT ME</span>
-        <h2>More Than Just Code</h2>
+        <h2>More Than <span>Just Code</span></h2>
         <p>
           I combine frontend development, UI design, and 3D creativity to build
           digital experiences that feel modern, useful, and visually memorable.
