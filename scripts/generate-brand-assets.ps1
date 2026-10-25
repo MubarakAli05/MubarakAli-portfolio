@@ -1,3 +1,5 @@
+param([switch]$BrandOnly)
+
 Add-Type -AssemblyName System.Drawing
 Add-Type -ReferencedAssemblies System.Drawing -TypeDefinition @'
 using System;
@@ -8,10 +10,10 @@ using System.Drawing.Text;
 using System.IO;
 
 public static class PortfolioAssets {
-    static readonly Color Bg = Color.FromArgb(240, 244, 243);
-    static readonly Color Ink = Color.FromArgb(32, 42, 50);
-    static readonly Color Green = Color.FromArgb(23, 107, 91);
-    static readonly Color Muted = Color.FromArgb(94, 105, 116);
+    static readonly Color Bg = Color.FromArgb(240, 241, 225);
+    static readonly Color Ink = Color.FromArgb(23, 26, 20);
+    static readonly Color Green = Color.FromArgb(61, 84, 50);
+    static readonly Color Muted = Color.FromArgb(70, 78, 63);
 
     static Color Mix(Color a, Color b, double t) {
         return Color.FromArgb((int)(a.R + (b.R-a.R)*t), (int)(a.G + (b.G-a.G)*t), (int)(a.B + (b.B-a.B)*t));
@@ -46,7 +48,7 @@ public static class PortfolioAssets {
         var state = g.Save();
         g.TranslateTransform(x,y);
         g.ScaleTransform(size/64,size/64);
-        using (var brush = new SolidBrush(Color.FromArgb(234,242,239)))
+        using (var brush = new SolidBrush(Bg))
         using (var tile = new GraphicsPath()) {
             tile.AddArc(0,0,32,32,180,90);
             tile.AddArc(32,0,32,32,270,90);
@@ -55,23 +57,25 @@ public static class PortfolioAssets {
             tile.CloseFigure();
             g.FillPath(brush,tile);
         }
-        using (var brush = new SolidBrush(Color.FromArgb(67,143,126)))
+        using (var brush = new SolidBrush(Color.FromArgb(114,141,100)))
             g.FillPolygon(brush,new PointF[]{new PointF(12,21),new PointF(36,7),new PointF(52,16),new PointF(28,30)});
-        using (var brush = new SolidBrush(Color.FromArgb(16,83,69)))
+        using (var brush = new SolidBrush(Color.FromArgb(45,64,37)))
             g.FillPolygon(brush,new PointF[]{new PointF(12,21),new PointF(28,30),new PointF(52,44),new PointF(36,53)});
         using (var brush = new SolidBrush(Green))
             g.FillPolygon(brush,new PointF[]{new PointF(36,53),new PointF(52,44),new PointF(28,58),new PointF(12,49)});
         g.Restore(state);
     }
-    public static void Generate(string root) {
+    public static void Generate(string root, bool brandOnly) {
         foreach (int size in new int[]{64,180}) {
             using (var icon=new Bitmap(size,size)) using (var g=Canvas(icon)) {
                 Mark(g,0,0,size);
                 icon.Save(Path.Combine(root,size==64?"favicon-64.png":"apple-touch-icon.png"),ImageFormat.Png);
             }
         }
-        using (var cover = Recolor(Path.Combine(root,"web","when-to-wander.png"),true))
-            cover.Save(Path.Combine(root,"web","when-to-wander-cover.png"),ImageFormat.Png);
+        if (!brandOnly) {
+            using (var cover = Recolor(Path.Combine(root,"web","when-to-wander.png"),true))
+                cover.Save(Path.Combine(root,"web","when-to-wander-cover.png"),ImageFormat.Png);
+        }
         using (var social=new Bitmap(1200,630)) using (var g=Canvas(social)) {
             Mark(g,82,80,80);
             Text(g,"MUBARAK ALI",20,FontStyle.Bold,Green,184,100);
@@ -86,5 +90,6 @@ public static class PortfolioAssets {
 '@
 
 $public = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\public'))
-[PortfolioAssets]::Generate($public)
-Write-Output 'Generated matching project artwork, folded-ribbon icons, and social preview.'
+[PortfolioAssets]::Generate($public, $BrandOnly.IsPresent)
+Write-Output 'Generated folded-ribbon icons and social preview.'
+if (-not $BrandOnly) { Write-Output 'Generated matching project artwork.' }

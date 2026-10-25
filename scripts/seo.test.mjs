@@ -166,6 +166,7 @@ test("folded-ribbon branding is available for navigation, browser icons, and sha
   assert.match(html, /<img[^>]+src="\/logo\.svg"[^>]+alt=""/);
   const logo = await readFile(new URL("logo.svg", dist), "utf8");
   assert.equal([...logo.matchAll(/<path\b/g)].length, 3);
+  assert.deepEqual([...logo.matchAll(/fill="(#[0-9a-f]{6})"/gi)].map((match) => match[1].toUpperCase()), ["#F0F1E1", "#728D64", "#2D4025", "#3D5432"]);
   assert.doesNotMatch(logo, /<text\b/);
   for (const [file, width, height] of [
     ["favicon-64.png", 64, 64],

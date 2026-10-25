@@ -29,7 +29,7 @@ Each section has a distinct interaction: the hero uses pointer depth; About uses
 
 Below the hero, faint rings, dots, light washes, and diagonal lines drift by just 36px over each section's scroll journey using CSS view timelines. They remain static in unsupported browsers and with reduced motion, require no animation loop, and cannot intercept clicks or overflow their section. About retains its parallel cards with small decorative concept/code/cube icons and softly tinted surfaces.
 
-The custom folded-ribbon symbol replaces plain initials, using three green facets to suggest code and 3D depth. [logo.svg](public/logo.svg) appears in the navigation and as the SVG favicon, with matching PNG favicon, Apple touch icon, and social preview. Regenerate raster assets on Windows using `powershell -File scripts\generate-brand-assets.ps1`; keep its ribbon coordinates aligned with the SVG.
+The custom folded-ribbon symbol uses a cream `#F0F1E1` tile and moss `#728D64`, deep olive `#2D4025`, and dark moss `#3D5432` facets to match the page palette. [logo.svg](public/logo.svg) appears in the navigation and as the SVG favicon, with matching PNG favicon, Apple touch icon, and social preview. Regenerate only these brand assets on Windows using `powershell -File scripts\generate-brand-assets.ps1 -BrandOnly`; omit `-BrandOnly` to also regenerate the When to Wander cover. Keep the generator's ribbon coordinates and colors aligned with the SVG.
 
 All nine original 3D projects remain individually visible in one compact horizontal carousel, with previous/next controls, swipe/scroll support, and full-image previews. Three cards fit on desktop, two on tablet, and one on mobile; movement is user-controlled and respects reduced-motion preferences.
 
